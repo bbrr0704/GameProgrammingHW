@@ -111,21 +111,33 @@ class Disc {
   	 this.vel.z = - this.vel.z;
      
      this.pos.z =  150-R;
+	 
+	     collsound.play();
+
   }
   if (this.pos.z < -150+R) {
   	 this.vel.z = - this.vel.z;
      
      this.pos.z = -150+R;
+	 
+	     collsound.play();
+
   }
   if (this.pos.x > 150-R) {
   	 this.vel.x = - this.vel.x;
      
      this.pos.x = 150-R;
+	 
+	     collsound.play();
+
   }
  if (this.pos.x < -150+R) {
   	 this.vel.x = - this.vel.x;
      
      this.pos.x = -150+R;
+	 
+	     collsound.play();
+
   }
 
 	this.whole.position.copy (this.pos);
