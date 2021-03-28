@@ -176,20 +176,20 @@ function init() {
  	scene.add (floor);
   floor.rotation.x = -(Math.PI/2) ;
   
-  var wall0 = new Wall(290,40,10);
-  var wall1 = new Wall(290,40,10);
-  var wall2 = new Wall(310,40,10);
-  var wall3 = new Wall(310,40,10);
+  var wall0 = new Wall(290,40,5);
+  var wall1 = new Wall(290,40,5);
+  var wall2 = new Wall(310,40,5);
+  var wall3 = new Wall(310,40,5);
   
   wall0.Create();
   wall1.Create();
   wall2.Create();
   wall3.Create();
   
-  wall0.model.position.set(150,20,0);
-  wall1.model.position.set(-150,20,0);
-  wall2.model.position.set(0,20,150);
-  wall3.model.position.set(0,20,-150);
+  wall0.model.position.set(152.5,20,0);
+  wall1.model.position.set(-152.5,20,0);
+  wall2.model.position.set(0,20,152.5);
+  wall3.model.position.set(0,20,-152.5);
   
   wall0.model.rotation.y = (1/2)*Math.PI;
   wall1.model.rotation.y = (1/2)*Math.PI;
