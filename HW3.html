@@ -47,7 +47,7 @@ const WW = 4;
 const HH = 12;
 var head, torso, lLeg, rLeg;
 
-var walk = false;
+var walk = false , walk2 = false;
 var clock = new THREE.Clock();
 var ts;// = -1; // ts < 0 --> not yet started
 var state = 'Stand';
@@ -378,13 +378,20 @@ function animate() {
   
   keyboard.update();
 
-  if (keyboard.down('space')) { // move to walk
-     walk = true;
-   	state = 'S2W';
+  if (keyboard.down('space'))  // move to walk
+     if(!walk2){
+	 walk = !walk;
+   	
+	 walk2 = true;
+	 
+		if(walk)
+			state = 'S2W';
+		else
+			state = 'W2S';
   }
   if (keyboard.up('space')) { // move to stand
-	walk = false;
-   	state = 'W2S';
+	walk2 = false;
+   	
   }
   
 	if (walk) 
@@ -453,87 +460,27 @@ function animate() {
  if(up)
  {
 
-	if(angle % (2*Math.PI) <= Math.PI/170 && angle % (2*Math.PI) >= -Math.PI/170)
-	{
-		angle = 0;
-	}
-	else
-	if(angle >= Math.PI)
-    {
-		angle += Math.PI/180;
-    	torso.rotation.y = angle;  
-	}
-    else
-    {
-		angle -= Math.PI/180;
-    	torso.rotation.y = angle;
-    }
- 		if(walk) posz +=0.2;
-		torso.position.set(posx, HH ,posz);
  }
  
  if(down)
  {
 
-	if(angle % (2*Math.PI) <= Math.PI + Math.PI/170 && angle % (2*Math.PI) >= Math.PI -Math.PI/170)
-	{
-		angle = Math.PI;
-	}
-	else
-	if(angle <=  Math.PI )
-    {
-		angle += Math.PI/180;
-    	torso.rotation.y = angle;  
-	}
-    else
-    {
-		angle -= Math.PI/180;
-    	torso.rotation.y = angle;
-    }
- 		if(walk) posz -=0.2;
-		torso.position.set(posx, HH ,posz);
  }
  if(left)
  {
 
-	if(angle % (2*Math.PI) <= Math.PI*(3/2) + Math.PI/160 && angle % (2*Math.PI) >= Math.PI*(3/2) -Math.PI/160)
-	{
-		angle = Math.PI*(3/2);
-	}
-	else
-	if(angle >=  Math.PI/2 && angle <= Math.PI*(3/2))
-    {
-		angle -= Math.PI/180;
-    	torso.rotation.y = angle;  
-	}
-    else
-    {
+
 		angle += Math.PI/180;
-    	torso.rotation.y = angle;
-    }
- 		if(walk) posx +=0.2;
-		torso.position.set(posx, HH ,posz);
+    	torso.rotation.y = angle;  
+	
  }
  if(right)
  {
 
-	if( (angle+ 2*Math.PI) % (2*Math.PI) <= Math.PI/2 + Math.PI/160 && (angle + 2*Math.PI) % (2*Math.PI) >= Math.PI/2 -Math.PI/160)
-	{
-		angle = Math.PI/2;
-	}
-	else
-	if(angle <=  Math.PI/2 || angle >= Math.PI*(3/2))
-    {
+
 		angle -= Math.PI/180;
     	torso.rotation.y = angle;  
-	}
-    else
-    {
-		angle += Math.PI/180;
-    	torso.rotation.y = angle;
-    }
- 		if(walk) posx -=0.2;
-		torso.position.set(posx, HH ,posz);
+	
  }
 
 
