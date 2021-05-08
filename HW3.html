@@ -30,8 +30,8 @@ body {
 
 
 <div id="info">
-  Press/hold <em>space</em> to walk
-  <br>Release to stand
+  Press <em>space</em> to switch walk and stand
+  <br>↑ ↓加減速  ← → 旋轉 
   <br><br>
   <p id='state'>
   </p>
@@ -54,6 +54,7 @@ var state = 'Stand';
 var temp;
 var up = false,down = false,right = false,left = false;
 
+var velx ,velz ,SPEED = 0.1;
 var posx = 0 , posz = 0;
 var angle = 0;
 
@@ -455,16 +456,29 @@ function animate() {
     lLeg.rotation.x = intKey[0];
     rLeg.rotation.x = intKey[1];
   }
- */ 
+ */
+ 
+	if(walk)
+	{
+		velx = Math.cos(angle+Math.PI/2);
+		velz = Math.sin(angle+Math.PI/2);
+		
+	
+		posx -= velx*SPEED;
+		posz += velz*SPEED;
+
+	}
+ 
+	torso.position.set(posx , HH , posz);
  
  if(up)
  {
-
+	SPEED +=0.003;
  }
  
  if(down)
  {
-
+	SPEED -=0.003;
  }
  if(left)
  {
@@ -485,8 +499,6 @@ function animate() {
 
 
  
- if(angle >= Math.PI*2 )angle -=Math.PI*2;
- if(angle < 0 )angle +=Math.PI*2;
 }
 
 function render() {
